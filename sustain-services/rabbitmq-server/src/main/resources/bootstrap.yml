@@ -1,0 +1,50 @@
+server:
+  port: 9181
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: rabbitmq-server
+  cloud:
+    config:
+      uri: http://localhost:6671
+      fail-fast: true
+  profiles:
+    active: dev
+  redis:
+    host: 41.232.5.30
+    port: 6379
+    database: 1
+
+  rabbitmq:
+    addresses: 41.232.5.30:5672
+    username: admin
+    password: 123456
+    virtual-host: /
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        #max-concurrency:50 #最大消费者数量
+        ## retry 为false时，如果没有收到消费者的ACK，那么会无限投递;设置为true时,默认投递时次数为3次，现在改为5次
+        retry:
+          enabled: true  #是否支持重试
+          max-attempts: 5 #重试的次数
+  #redis主从哨兵模式配置
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8000
+#        username: admin
+#        password: admin
+#        instance:
+#          service-base-url: http://localhost:${server.port}
+
+
+
+
+

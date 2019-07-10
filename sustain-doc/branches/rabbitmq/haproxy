@@ -1,0 +1,78 @@
+#!/bin/sh
+# chkconfig: 345 85 15
+# description: HAProxy is a TCP/HTTP reverse proxy which is particularly suited for high availability environments.
+if [ -f /etc/init.d/functions ]; then
+ . /etc/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ] ; then
+ . /etc/rc.d/init.d/functions
+else
+ exit 0
+fi
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+config="/usr/local/haproxy/haproxy.cfg"
+exec="/usr/local/haproxy/sbin/haproxy"
+PID="/usr/local/haproxy/haproxy.pid"
+[ -f $config ] || exit 1
+RETVAL=0
+start() {
+  daemon $exec -c -q -f $config
+    if [ $? -ne 0 ]; then
+        echo "Errors found in configuration file."
+        return 1
+    fi
+  echo -n "Starting HAproxy: "
+  $exec -D -f $config -p $PID
+  RETVAL=$?
+  echo
+  [ $RETVAL -eq 0 ] && touch /var/lock/subsys/haproxy
+  return $RETVAL
+}
+
+stop() {
+ echo -n "Shutting down HAproxy: "
+ killproc haproxy -USR1
+ RETVAL=$?
+ echo
+ [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/haproxy
+ [ $RETVAL -eq 0 ] && rm -f $PID
+ return $RETVAL
+}
+
+restart() {
+ $exec -c -q -f $config
+   if [ $? -ne 0 ]; then
+       echo "Errors found in configuration file, check it with 'haproxy check'."
+       return 1
+   fi
+ stop
+ start
+}
+
+rhstatus() {
+ status haproxy
+}
+
+# See how we were called.
+case "$1" in
+ start)
+        start
+        ;;
+ stop)
+        stop
+        ;;
+ restart)
+        restart
+        ;;
+ status)
+        rhstatus
+        ;;
+ *)
+        echo $"Usage: haproxy {start|stop|restart|status}"
+        RETVAL=1
+        esac
+        exit $RETVAL

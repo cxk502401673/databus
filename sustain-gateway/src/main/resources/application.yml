@@ -1,0 +1,36 @@
+server:
+  port: 2004
+
+spring:
+  application:
+    name: service-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true #在eureka中，服务是以大写的形式注册的，可以转化成小写
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+  rabbitmq:
+    addresses: 144.52.16.22:5672
+    username: admin
+    password: 123456
+    virtual-host: /
+#    publisher-confirms: true
+#    publisher-returns: true
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+#        concurrency: 1
+#        #max-concurrency:50 #最大消费者数量
+#        ## retry 为false时，如果没有收到消费者的ACK，那么会无限投递;设置为true时,默认投递时次数为3次，现在>改为5次
+#        retry:
+#          enabled: true  #是否支持重试
+#          max-attempts: 5 #重试的次数
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

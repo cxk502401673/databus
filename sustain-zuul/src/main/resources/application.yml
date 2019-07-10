@@ -1,0 +1,45 @@
+server:
+  port: 9998
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+spring:
+  application:
+    name: zuul-server
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:6671
+      fail-fast: true
+  rabbitmq:
+    addresses: 41.232.5.30:5672
+    username: admin
+    password: 123456
+    virtual-host: /
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        #max-concurrency:50 #最大消费者数量
+        ## retry 为false时，如果没有收到消费者的ACK，那么会无限投递;设置为true时,默认投递时次数为3次，现在>改为5次
+        retry:
+          enabled: true  #是否支持重试
+          max-attempts: 5 #重试的次数
+  datasource:
+    url: jdbc:mysql://41.232.5.30:3306/sjzx
+    username: root
+    password: dahuacloud
+
+zuul:
+  host:
+    connect-timeout-millis: 15000
+    socket-timeout-millis: 60000
+ribbon:
+  ReadTimeout: 10000
+  ConnectionTimeout: 10000
+

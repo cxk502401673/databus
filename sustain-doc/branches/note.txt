@@ -1,0 +1,2 @@
+启动时候制定端口： java -jar xxx.jar  --server.port=9090
+

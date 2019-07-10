@@ -1,0 +1,8 @@
+CREATE TABLE `t_rules` (
+  `id` int(10) NOT NULL,
+  `username` varchar(500) DEFAULT NULL COMMENT '用户名',
+  `server_name` varchar(500) NOT NULL COMMENT '用户拥有权限的服务',
+  `valid` int(10) NOT NULL DEFAULT '1' COMMENT '0表示无效，1表示有效',
+  `create_time` date DEFAULT NULL,
+  `update_time` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

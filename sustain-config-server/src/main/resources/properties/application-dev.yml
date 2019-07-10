@@ -1,0 +1,125 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  tomcat:
+    max-threads: 500 # Maximum amount of worker threads.
+    min-spare-threads: 50 # Minimum amount of worker threads
+spring:
+  cloud:
+    sentinel:
+      transport:
+        dashboard: 41.232.5.30:8111
+        port: 8719
+  datasource:
+    url: jdbc:mysql://41.232.5.30:3306/sjzx
+    username: root
+    password: dahuacloud
+#
+#  datasource:
+#    ###url: jdbc:mysql://127.0.0.1:3306/cloud?useUnicode=true&characterEncoding=UTF8&useSSL=false&autoReconnect=true&serverTimezone=GMT
+#    ###driver-class-name: com.mysql.cj.jdbc.Driver
+#    ###username: root
+#    ###password: root
+#    url: jdbc:oracle:thin:@41.232.3.223:1521:orcl
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    username: sus
+#    password: sus
+#    max-idle: 10
+#    min-idle: 5
+#    test-on-borrow: false
+#    time-between-eviction-runs-millis: 18800
+#    test-while-idle: true
+#    validation-query: SELECT 1
+#    hikari:
+#      minimum-idle: 0
+
+  #redis主从哨兵模式配置
+  redis:
+    host: 41.232.5.30
+    port: 6379
+    database: 1
+  #    sentinel:
+#      nodes: 41.232.5.30:6379 #哨兵的ip 端口 多个用逗号分隔
+#      master: mymaster
+#    timeout: 6000ms
+#    password:
+#    lettuce:
+#      pool:
+#        max-active: 8
+#        max-wait: -1ms
+#        max-idle: 8
+#        min-idle: 0
+#        database: 0
+  rabbitmq:
+    addresses: 41.232.5.30:5672
+    username: admin
+    password: 123456
+    virtual-host: /
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        #max-concurrency:50 #最大消费者数量
+        ## retry 为false时，如果没有收到消费者的ACK，那么会无限投递;设置为true时,默认投递时次数为3次，现在>改为5次
+        retry:
+          enabled: true  #是否支持重试
+          max-attempts: 5 #重试的次数
+redis:
+  cache:
+    expiration: 3601
+  maxTotal: 10000
+  maxIdle: 100 #设置最大空闲数量
+  minIdle: 50 #设置最小空闲数量
+
+
+ribbon:
+  eager-load:
+    enabled: true
+    clients: sustain-auth,sustain-user-service,rabbitmq-provide
+  Httpclient:
+    enabled: true
+  OkHttp:
+    enabled: false
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+feign:
+  hystrix:
+    enabled: true
+  okhttp:
+    enabled: false
+  httpclient:
+    enabled: true
+  client:
+    config:
+      feignName:
+        connectTimeout: 30000
+        readTimeout: 30000
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+hystrix:
+  threadpool:
+    default:
+      coreSize: 500
+      maxQueueSize: 1000
+      queueSizeRejectionThreshold: 800
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+sentinel:
+  remoteAddress: 41.232.5.30:8848
+  groupId: DEFAULT_GROUP
+  dataId: ${spring.application.name}-sentinel
+nacos:
+  address: 41.232.5.30:8848

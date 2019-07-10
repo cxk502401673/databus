@@ -1,0 +1,52 @@
+#数据源
+#spring:
+#  rabbitmq:
+#    addresses: 41.232.5.30:5672
+#    username: admin
+#    password: 123456
+#    virtual-host: /
+#    publisher-confirms: true
+#    publisher-returns: true
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+#        concurrency: 1
+#        #max-concurrency:50 #最大消费者数量
+#        ## retry 为false时，如果没有收到消费者的ACK，那么会无限投递;设置为true时,默认投递时次数为3次，现在改为5次
+#        retry:
+#          enabled: true  #是否支持重试
+#          max-attempts: 5 #重试的次数
+  #redis主从哨兵模式配置
+#  redis:
+#    sentinel:
+#      nodes: 41.232.5.30:6379 #哨兵的ip 端口 多个用逗号分隔
+#      master: mymaster
+#    timeout: 6000ms
+#    password:
+#    lettuce:
+#      pool:
+#        max-active: 8
+#        max-wait: -1ms
+#        max-idle: 8
+#        min-idle: 0
+#    database: 0
+#    host: 127.0.0.1
+#    port: 6379
+# redis参数
+
+eureka:
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+    health-check-url-path: /actuator/health
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+management:
+  endpoints:
+  web:
+    exposure:
+      include:  "*"
+  endpoint:
+    health:
+      show-details: always

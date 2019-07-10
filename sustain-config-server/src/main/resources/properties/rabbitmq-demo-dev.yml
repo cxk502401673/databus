@@ -1,0 +1,20 @@
+spring:
+  rabbitmq:
+    addresses: 41.232.5.6:5676  #keepalived  的vip
+    username: admin
+    password: 123456
+    virtual-host: /
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        #max-concurrency:50 #最大消费者数量
+        ## retry 为false时，如果没有收到消费者的ACK，那么会无限投递;设置为true时,默认投递时次数为3次，现在改为5次
+        retry:
+          enabled: true  #是否支持重试
+          max-attempts: 5 #重试的次数
+
+rabbitmq:
+  exchange: topicExchange

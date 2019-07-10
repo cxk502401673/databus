@@ -1,0 +1,10 @@
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,"*"
+#发送 post 请求 http://localhost:9986/actuator/refresh 动态刷新配置中心修改后的配置
+# localhost 为 rabbitmq-access 的地址，9986位rabbitmq-access 的端口

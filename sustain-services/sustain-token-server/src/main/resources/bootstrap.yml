@@ -1,0 +1,43 @@
+server:
+  port: 9999
+eureka:
+  instance:
+    prefer-ip-address: true
+    # 服务向eureka 发送心跳的间隔
+    lease-renewal-interval-in-seconds: 4
+    # eureka 在收到最后一次心跳之后等待的时间上限，超过这时间则被eureka剔除
+    lease-expiration-duration-in-seconds: 7
+    #  lease-expiration-duration-in-seconds 设置的要比  lease-renewal-interval-in-seconds 大
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+
+spring:
+  application:
+    name: token-server
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:6671
+      fail-fast: true
+
+
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:8000
+        username: admin
+        password: admin
+        instance:
+          service-base-url: http://127.0.0.1:${server.port}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

@@ -1,0 +1,49 @@
+#数据源
+spring:
+  datasource:
+    hikari:
+      minimum-idle: 4
+      maximum-pool-size: 16
+      connection-timeout: 10000
+      idle-timeout: 30000
+      pool-name: SpringBootHikariCP
+      # 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL wait_timeout参数（show variables like '%timeout%';）
+      max-lifetime: 1765000
+      #连接只读数据库时配置为true， 保证安全
+      read-only: false
+    #动态数据源配置
+    dynamic:
+      #主数据源
+      primary: db_sys
+      datasource:
+        db_sys:
+          url: jdbc:oracle:thin:@41.232.3.223:1521:orcl
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+          username: sus
+          password: sus
+        db_multiDimension:
+          url: jdbc:oracle:thin:@10.121.252.144:1521:orcl
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+          username: SHZAZS
+          password: SHZAZS
+        db_nineXperson:
+          url: jdbc:oracle:thin:@41.232.3.223:1521:orcl
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+          username: sus
+          password: sus
+eureka:
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+    health-check-url-path: /actuator/health
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+management:
+  endpoints:
+  web:
+    exposure:
+      include:  "*"
+  endpoint:
+    health:
+      show-details: always

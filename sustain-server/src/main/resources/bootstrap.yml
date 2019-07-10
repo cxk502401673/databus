@@ -1,0 +1,24 @@
+server:
+  port: 8761
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000
+        username: admin
+        password: admin
+        instance:
+          service-base-url: http://localhost:${server.port}
+  application:
+    name: sustain-server
+  profiles:
+    active: dev
+
+eureka:
+  client:
+    register-with-eureka: false  # 本身不注册
+    fetch-registry: false
+  server:
+    enable-self-preservation: false # 关闭自我保护，自动剔除故障的服务
+    eviction-interval-timer-in-ms: 4000 # 清理间隔
+

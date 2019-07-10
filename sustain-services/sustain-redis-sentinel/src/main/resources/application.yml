@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:6671
+      fail-fast: true
+  profiles:
+    active: dev
+  application:
+    name: redis-server
+
+
+server:
+  port: 9011

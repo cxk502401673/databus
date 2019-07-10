@@ -1,0 +1,74 @@
+#server:
+#  port: 2004
+#spring:
+#  application:
+#    name: api-gateway-dynamic
+#  profiles:
+#    active: dev
+##  cloud:
+##    config:
+##      discovery:
+##        enabled: true
+##        listener-id: sustain-config-server
+##      fail-fast: false
+##      name: ${spring.application.name}
+##      label: ${spring.profiles.active}
+##      profile: ${spring.profiles.active}
+## 禁用httpclient  启用 okhttp
+#ribbon:
+#  httpclient:
+#    enabled: false
+#    okhttp:
+#      enabled: true
+#ignore:
+#  urls:
+#  - /**/*.css
+#  - /auth/**
+#  - /admin/**
+#  - /refresh/**
+#  - /swagger-ui.html
+#  - /swagger-resources/**
+#  - /*/v2/api-docs
+#  - /webjars/**
+#  - /admin/**
+#  - /percept/**
+#  - /redis/**
+#  - /rabbitserver/**
+#swagger:
+#  client:
+#    - sustain-user-service
+#    - sustain-gen-listener
+## 关闭默认路由
+#zuul:
+#  ignoredServices: '*'
+#
+#
+#---
+#spring:
+#  profiles: dev
+#  cloud:
+#    config:
+#      discovery:
+#        service-id: sustain-config-server
+#        enabled: true
+#      profile: ${spring.profiles.active}
+#      uri: http://127.0.0.1:6671
+#      name:  ${spring.application.name}
+#eureka:
+#  instance:
+#    ip-address: 127.0.0.1
+#    prefer-ip-address: true
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:8761/eureka/
+#
+#---
+#spring:
+#  profiles: prod
+#eureka:
+#  instance:
+#    ip-address: 193.112.100.103
+#    prefer-ip-address: true
+#  client:
+#    service-url:
+#      defaultZone: http://193.112.100.103:8761/eureka/

@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/classesschedule?useUnicode=true&characterEncoding=UTF8&useSSL=false&autoReconnect=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 2354332
+    max-idle: 10
+    min-idle: 5
+    test-on-borrow: false
+    time-between-eviction-runs-millis: 18800
+    test-while-idle: true
+    validation-query: SELECT 1
+    hikari:
+      minimum-idle: 0
