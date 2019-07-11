@@ -1,5 +1,6 @@
-package sustain.token.util;
+package com.zjydt.sustain.common.util;
 
+import com.zjydt.sustain.common.constants.CommonConstants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -27,7 +28,7 @@ public class JwtUtil {
     /**
      * JWT 生成密钥使用的密码
      */
-    private static final String JWT_RULE = "yidiantong.mima";
+    private static final String JWT_RULE = CommonConstants.Key;
 
     /**
      * JWT 添加至HTTP HEAD中的前缀

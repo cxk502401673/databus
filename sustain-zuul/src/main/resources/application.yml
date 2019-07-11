@@ -15,7 +15,7 @@ spring:
       uri: http://localhost:6671
       fail-fast: true
   rabbitmq:
-    addresses: 41.232.5.30:5672
+    addresses: 127.0.0.1:5672
     username: admin
     password: 123456
     virtual-host: /
@@ -31,7 +31,7 @@ spring:
           enabled: true  #是否支持重试
           max-attempts: 5 #重试的次数
   datasource:
-    url: jdbc:mysql://41.232.5.30:3306/sjzx
+    url: jdbc:mysql://127.0.0.1:3306/sjzx
     username: root
     password: dahuacloud
 

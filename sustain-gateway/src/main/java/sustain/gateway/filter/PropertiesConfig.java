@@ -12,7 +12,7 @@ import java.util.List;
 //配置前缀
 @ConfigurationProperties(prefix = "gateway.filter")
 //配置文件名
-@PropertySource("classpath:/gateway-filter-uri.properties")
+@PropertySource("classpath:/config/gateway-filter-uri.properties")
 @Data
 public class PropertiesConfig {
     //前缀名（gateway.filter） + 后缀名（uri）

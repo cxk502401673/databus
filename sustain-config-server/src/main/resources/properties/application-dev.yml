@@ -11,12 +11,13 @@ spring:
   cloud:
     sentinel:
       transport:
-        dashboard: 41.232.5.30:8111
+        dashboard: 127.0.0.1:8111
         port: 8719
+
   datasource:
-    url: jdbc:mysql://41.232.5.30:3306/sjzx
+    url: jdbc:mysql://127.0.0.1:3306/databus
     username: root
-    password: dahuacloud
+    password: root
 #
 #  datasource:
 #    ###url: jdbc:mysql://127.0.0.1:3306/cloud?useUnicode=true&characterEncoding=UTF8&useSSL=false&autoReconnect=true&serverTimezone=GMT
@@ -38,11 +39,11 @@ spring:
 
   #redis主从哨兵模式配置
   redis:
-    host: 41.232.5.30
+    host: 127.0.0.1
     port: 6379
     database: 1
   #    sentinel:
-#      nodes: 41.232.5.30:6379 #哨兵的ip 端口 多个用逗号分隔
+#      nodes: 127.0.0.1:6379 #哨兵的ip 端口 多个用逗号分隔
 #      master: mymaster
 #    timeout: 6000ms
 #    password:
@@ -54,7 +55,7 @@ spring:
 #        min-idle: 0
 #        database: 0
   rabbitmq:
-    addresses: 41.232.5.30:5672
+    addresses: 127.0.0.1:5672
     username: admin
     password: 123456
     virtual-host: /
@@ -118,8 +119,8 @@ hystrix:
           thread:
             timeoutInMilliseconds: 60000
 sentinel:
-  remoteAddress: 41.232.5.30:8848
+  remoteAddress: 127.0.0.1:8848
   groupId: DEFAULT_GROUP
   dataId: ${spring.application.name}-sentinel
 nacos:
-  address: 41.232.5.30:8848
+  address: 127.0.0.1:8848

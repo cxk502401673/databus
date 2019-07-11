@@ -7,7 +7,7 @@ import com.zjydt.sustain.common.dto.PerceptInfoDto;
 import com.zjydt.sustain.common.entity.Message;
 import com.zjydt.sustain.common.entity.PushData;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;

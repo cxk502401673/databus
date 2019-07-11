@@ -1,7 +1,7 @@
 #数据源
 #spring:
 #  rabbitmq:
-#    addresses: 41.232.5.30:5672
+#    addresses: 127.0.0.1:5672
 #    username: admin
 #    password: 123456
 #    virtual-host: /
@@ -19,7 +19,7 @@
   #redis主从哨兵模式配置
 #  redis:
 #    sentinel:
-#      nodes: 41.232.5.30:6379 #哨兵的ip 端口 多个用逗号分隔
+#      nodes: 127.0.0.1:6379 #哨兵的ip 端口 多个用逗号分隔
 #      master: mymaster
 #    timeout: 6000ms
 #    password:

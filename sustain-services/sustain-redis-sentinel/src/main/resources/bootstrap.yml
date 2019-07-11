@@ -12,7 +12,7 @@ spring:
       fail-fast: true
 #  redis:
 #    sentinel:
-#      nodes: 41.232.5.30:6379,41.232.5.5:26379
+#      nodes: 127.0.0.1:6379,41.232.5.5:26379
 #      master: mymaster
 #    timeout: 6000ms
 #    lettuce:

@@ -1,6 +1,6 @@
 spring:
   rabbitmq:
-    addresses: 41.232.5.30:5672 #keepalived  的vip
+    addresses: 127.0.0.1:5672 #keepalived  的vip
     username: admin
     password: 123456
     virtual-host: /

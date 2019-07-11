@@ -1,4 +1,4 @@
 sentinel:
-  remoteAddress: 41.232.5.30:8848
+  remoteAddress: 127.0.0.1:8848
   groupId: DEFAULT_GROUP
   dataId: ${spring.application.name}-sentinel

@@ -1,14 +1,12 @@
 package sustain.token.Interceptor;
 
+import com.zjydt.sustain.common.util.JwtUtil;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import sustain.token.util.JwtUtil;
 
-import javax.crypto.SecretKey;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

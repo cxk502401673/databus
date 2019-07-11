@@ -14,6 +14,6 @@ public interface CommonConstants {
 
     String SUSTAIN_REDIS_LIST_LEY = "sustain_client_id_to_access:cloud";
 
-
+    String Key="yidiantong.mima.key";
 
 }
