@@ -1,17 +1,13 @@
 package sustain.gateway.config;
 
-import org.springframework.cloud.gateway.route.RouteLocator;
-import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import sustain.gateway.filter.SetTokenFilter;
 
 @Configuration
 public class MyConfig {
-    @Bean
-    public SetTokenFilter setTokenFilter() {
-        return new SetTokenFilter();
-    }
+//    @Bean
+//    public SetTokenFilter setTokenFilter() {
+//        return new SetTokenFilter();
+//    }
 
 //    @Bean
 //    public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
