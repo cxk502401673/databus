@@ -16,7 +16,7 @@ spring:
 
 eureka:
   client:
-    register-with-eureka: false  # 本身不注册
+    register-with-eureka: true  # 本身不注册
     fetch-registry: false
   server:
     enable-self-preservation: false # 关闭自我保护，自动剔除故障的服务

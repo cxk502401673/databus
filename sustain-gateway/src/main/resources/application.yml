@@ -14,23 +14,19 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true
-          lower-case-service-id: true
+          enabled: true #gateway开启服务注册和发现的功能 自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务
+          lower-case-service-id: true #服务名配置为小写
       routes:
-        - id: 163                     #网关路由到网易官网
-          uri: http://www.163.com/
+        - id: baidu                     #网关路由到网易官网
+          uri: http://www.baidu.com/
           predicates:
-            - Path=/163/**
-        - id: rabbitmq-server           #网关路由到订单服务rabbitmq-server
-          uri: lb://rabbitmq-server
-          predicates:
-            - Path=/rabbitmq-server/**
+            - Path=/baidu/**
         - id: demo-server
-          uri: lb://demo-server
+          uri: lb://DEMO-SERVER
           predicates:
-            - Path=/demo-server/**
+            - Path=/demo/**
 
-server:
+server:l
   port: 2004
 
 

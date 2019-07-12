@@ -20,19 +20,24 @@ import java.util.Map;
  */
 @Component
 public class AuthSignatureFilter implements GlobalFilter, Ordered {
+    private final static String X_CLIENT_TOKEN_USER = "x-client-token-user";
+    private final static String TOKEN = "token";
+    private static final String BEARER = "Bearer";
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        //String token = exchange.getRequest().getQueryParams().getFirst("authToken");
         String username = exchange.getRequest().getQueryParams().getFirst("username");
         Map<String,Object > claim=new HashMap<>();
         claim.put("username",username);
-        String token= JwtUtil.buildJWT(claim,username);
-        //向headers中放文件，记得build
 
-        ServerHttpRequest host = exchange.getRequest().mutate().header("token", token).build();
-        //将现在的request 变成 change对象
-        ServerWebExchange build = exchange.mutate().request(host).build();
-        return chain.filter(build);
+        String token= JwtUtil.buildJWT(claim,username);
+
+        //向headers中放文件，记得build
+        ServerHttpRequest request = exchange.getRequest();
+        ServerHttpRequest.Builder builder = request.mutate();
+
+        builder.header(TOKEN, token);
+        return chain.filter(exchange.mutate().request(builder.build()).build());
+
     }
 
     @Override
