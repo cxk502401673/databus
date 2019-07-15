@@ -9,16 +9,21 @@ eureka:
 spring:
   application:
     name: demo-server
-  cloud:
-    config:
-      uri: http://localhost:6671
-      fail-fast: true
-  profiles:
-    active: dev
+#  cloud:
+#    config:
+#      uri: http://localhost:6671
+#      fail-fast: true
+#  profiles:
+#    active: dev
   redis:
     host: 127.0.0.1
     port: 6379
     database: 1
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/databus
+    username: root
+    password: root
 
   rabbitmq:
     addresses: 127.0.0.1:5672

@@ -26,7 +26,7 @@ spring:
           predicates:
             - Path=/demo/**
 
-server:l
+server:
   port: 2004
 
 
